@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { PersonaService } from './services/persona.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'angular-api-practica';
+  personas:Array<any> = [];
+
+  constructor(private personaService: PersonaService) {
+    this.personaService.getPersonas().subscribe((res:any) => {
+      this.personas = res;
+    })
+  }
+
 }
